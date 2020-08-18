@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+    id 'com.bmuschko.docker-spring-boot-application' version '6.1.4'
+}
+
+sourceCompatibility = '1.8'
+version '0.1.0'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation project(":springwolf-sqs-plugin")
+    runtimeOnly 'io.github.stavshamir:springwolf-ui:0.0.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+docker {
+    springBootApplication {
+        maintainer = 'shamir.stav@gmail.com'
+        baseImage = 'openjdk:8-alpine'
+        ports = [8080]
+        images = ["stavshamir/springwolf-sqs-example:${project.version}"]
+    }
+
+    registryCredentials {
+        username = System.getProperty('dockerhub.username')
+        password = System.getProperty('dockerhub.password')
+    }
+}
+
+test.dependsOn dockerBuildImage

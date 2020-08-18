@@ -1,0 +1,4 @@
+rootProject.name = 'springwolf-sqs'
+
+include 'springwolf-sqs-plugin', 'springwolf-sqs-example'
+
