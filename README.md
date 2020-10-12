@@ -5,6 +5,8 @@
 # Springwolf SQS Plugin
 ##### Automated documentation for Spring Boot application with SQS consumers
 
+*This plugin is still not available - if you would like to contribute, please let me know!*
+
 ### Table Of Contents
 - [About](#about)
 - [Usage](#usage)
